@@ -1,0 +1,33 @@
+name: ledgerdiary
+description: "Practise project."
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.3.1 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  font_awesome_flutter: ^10.7.0
+  fl_chart: ^0.66.2
+  intl: ^0.19.0
+  flex_color_picker: ^3.4.1
+  expense_repository:
+    path: packages/expense_repository
+
+  cupertino_icons: ^1.0.6
+  firebase_core: ^2.27.1
+  flutter_bloc: ^8.1.4
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+flutter:
+
+  uses-material-design: true
+  assets:
+    - assets/
+
+

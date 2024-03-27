@@ -1,0 +1,5 @@
+package com.nsv.ledgerdiary
+
+import io.flutter.embedding.android.FlutterActivity
+
+class MainActivity: FlutterActivity()

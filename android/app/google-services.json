@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "229997660530",
+    "project_id": "ledgerdiary-194f0",
+    "storage_bucket": "ledgerdiary-194f0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:229997660530:android:c66ae1c7034b2cf498f5eb",
+        "android_client_info": {
+          "package_name": "com.nsv.ledgerdiary"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGpn3AQ7cBIrspgswMQRQUEWC3kld9I30"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
