@@ -5,11 +5,11 @@ class Category{
   String name;
   int totalExpense;
   String icon;
-  String color;
+  int color;
 
   Category({required this.categoryId, required this.name, required this.totalExpense, required this.icon, required this.color});
 
-  static final empty = Category(categoryId: "", name: "", totalExpense: 0, icon: "", color: "");
+  static final empty = Category(categoryId: "", name: "", totalExpense: 0, icon: "", color: 0);
 
   CategoryEntity toEntity(){
     return CategoryEntity(categoryId: categoryId, name: name, totalExpense: totalExpense, icon: icon, color: color);

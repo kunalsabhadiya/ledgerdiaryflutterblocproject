@@ -1,10 +1,11 @@
-import 'package:flutter/cupertino.dart';
+import 'package:expense_repository/expense_repository.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:ledgerdiary/screens/home/data/static_data_list.dart';
+import 'package:intl/intl.dart';
 
 class MainScreen extends StatelessWidget {
-  const MainScreen({super.key});
+  final List<Expense> expenses;
+
+  const MainScreen(this.expenses, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -204,27 +205,23 @@ class MainScreen extends StatelessWidget {
             const SizedBox(
               height: 36,
             ),
-             Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text(
-                  "Transactions",
+                const Text("Transactions",
                     style: TextStyle(
                       color: Colors.black87,
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
-                    )
-                ),
+                    )),
                 GestureDetector(
-                  onTap: (){},
-                  child: const Text(
-                      "View All",
+                  onTap: () {},
+                  child: const Text("View All",
                       style: TextStyle(
                         color: Colors.black38,
                         fontSize: 14,
                         fontWeight: FontWeight.w400,
-                      )
-                  ),
+                      )),
                 ),
               ],
             ),
@@ -233,87 +230,89 @@ class MainScreen extends StatelessWidget {
             ),
             Expanded(
               child: ListView.builder(
-                  itemBuilder:
-                  (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.only(bottom: 16),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(12),
-                         /* boxShadow: [
-                            BoxShadow(
-                              blurRadius: 4,
-                              color: Colors.grey.shade300,
-                              offset: const Offset(5, 5),
-                            ),
-                          ],*/
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                children: [
-                                  Stack(
-                                    alignment: Alignment.center,
-                                    children: [
-                                      Container(
-                                        width: 50,
-                                        height: 50,
-                                        decoration:  BoxDecoration(
-                                          color: myData[index]['color'],
-                                          shape: BoxShape.circle
-                                        ),
-                                      ),
-                                      myData[index]['icon'],
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 16),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                Stack(
+                                  alignment: Alignment.center,
+                                  children: [
+                                    Container(
+                                      width: 50,
+                                      height: 50,
+                                      decoration: BoxDecoration(
+                                          color: Color(expenses[index]
+                                              .category
+                                              .color),
+                                          shape: BoxShape.circle),
+                                    ),
+                                    Container(
+                                      width: 25,
+                                        height: 25,
+                                        child: Image.asset(
+                                      'assets/${expenses[index].category.icon}.png',
+                                      scale: 2,
+                                          color: Colors.white,
+                                    )),
 
-                                      /*Icon(
+                                    /*Icon(
                                         color: Colors.white,
                                         size: 30,
                                       ),*/
-                                    ],
+                                  ],
+                                ),
+                                const SizedBox(
+                                  width: 12,
+                                ),
+                                Text(
+                                  expenses[index].category.name,
+                                  style: const TextStyle(
+                                    color: Colors.black87,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
                                   ),
-                                  SizedBox(width: 12,),
-                                   Text(
-                                    myData[index]['name'],
-                                    style: const TextStyle(
-                                      color: Colors.black87,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w500,
-                                    ),
+                                ),
+                              ],
+                            ),
+                            Column(
+                              children: [
+                                Text(
+                                  "${expenses[index].amount.toString()}.00₹",
+                                  style: const TextStyle(
+                                    color: Colors.black87,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
                                   ),
-                                ],
-
-                              ),
-                               Column(
-                                children: [
-                                  Text(
-                                      myData[index]['totalAmount'],
-                                    style: const TextStyle(
-                                      color: Colors.black87,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w500,
-                                    ),
+                                ),
+                                Text(
+                                  DateFormat('dd/MM/yyyy').format(expenses[index].date),
+                                  style: const TextStyle(
+                                    color: Colors.black38,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w400,
                                   ),
-                                   Text(
-                                    myData[index]['date'],
-                                    style: const TextStyle(
-                                      color: Colors.black38,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w400,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
                       ),
-                    );
-                  },
-                  itemCount: myData.length,),
+                    ),
+                  );
+                },
+                itemCount: expenses.length,
+              ),
             )
           ],
         ),

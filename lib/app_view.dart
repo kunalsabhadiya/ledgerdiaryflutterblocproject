@@ -1,5 +1,8 @@
+import 'package:expense_repository/expense_repository.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ledgerdiary/main.dart';
+import 'package:ledgerdiary/screens/home/blocs/get_expense_bloc/get_expense_bloc.dart';
 import 'package:ledgerdiary/screens/home/views/home_screen.dart';
 
 class MyAppView extends StatelessWidget {
@@ -20,7 +23,9 @@ class MyAppView extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: const HomeScreen(),
+      home: BlocProvider(
+          create: (context) => GetExpenseBloc(firebaseExpenseRepo())..add(getExpense()),
+          child: const HomeScreen()),
     );
   }
 }
